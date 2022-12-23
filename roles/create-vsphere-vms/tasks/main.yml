@@ -1,0 +1,46 @@
+#Created by Thomas Preischl 06/2020
+---
+- name: Create VM from template
+  vmware_guest:
+      validate_certs: False
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_user }}"
+      password: "{{ vcenter_pass }}"
+      cluster: "{{ vcenter_cluster }}"
+      datacenter: "{{ vcenter_datacenter }}"
+      name: '{{ guest_hostname }}'
+      folder: "{{ vm_foldername }}"
+      template: "{{ vmtemplate }}"
+      datastore: "{{ datastore }}"
+      # disk:
+      #   - size_gb: "{{ disk_size | default(50) }}"
+      #     type: thin
+      #     datastore: "{{ datastore }}"
+      networks:
+      - name: "{{ vm_network }}"
+        ip: '{{ inventory_hostname }}'
+        netmask: '{{ guest_netmask }}'
+        gateway: '{{ guest_gateway }}'
+        dns_servers:
+        - '{{ guest_dns_server1 }}'
+      # - '{{ guest_dns_server2 }}'
+      hardware:
+        num_cpus: '{{ guest_vcpu }}'
+        memory_mb: '{{ guest_vram }}'
+      customization:
+        hostname: '{{ guest_hostname }}'
+        password: '{{ ansible_password }}'
+        joinworkgroup: 'workgroup'
+        timezone: 110
+      wait_for_customization: True
+      state: poweredon
+  delegate_to: localhost
+  register: newvm
+
+- name: Wait until connection to vm
+  wait_for_connection:
+    delay: 5
+    timeout: 900
+
+- name: Gather facts for the first time
+  setup:
