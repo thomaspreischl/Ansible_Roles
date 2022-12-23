@@ -10,9 +10,9 @@ You can run your deployment with the following parameters:
 
 * ansible-playbook YOURPLAYBOOK.YML -i INVENTORYFILE
 
-for example: * ansible-playbook 01-create-vsphere-vms.yml -i /inventory/homelab *
+for example: *ansible-playbook 01-create-vsphere-vms.yml -i /inventory/homelab*
 
-for running in debugmode you can add the parameter * -vvv *
+for running in debugmode you can add the parameter *-vvv*
 
 
 # Description of the Roles and Playbooks
