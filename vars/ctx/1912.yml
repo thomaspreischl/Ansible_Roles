@@ -1,0 +1,20 @@
+
+# Define your Active Directory Groups here
+
+
+# edition: 1912
+
+srcisofile: /mnt/c/isos/Citrix_Virtual_Apps_and_Desktops_7_1912_1000.iso
+destisofile: C:\ansible_install\Citrix_Virtual_Apps_and_Desktops_7_1912_1000.iso
+
+req_roles: NET-Framework-45-Core,GPMC,RSAT-ADDS-Tools,RDS-Licensing-UI,WAS,Telnet-Client
+    
+
+exepath: '{{ disk_image_out.mount_paths[0] }}x64\XenDesktop Setup\XenDesktopServerSetup.exe'
+
+params_full: '/COMPONENTS {{ components }} /CONFIGURE_FIREWALL /QUIET /NOREBOOT /NOSQL /ignore_hw_check_failure'
+params_licserver: '/COMPONENTS LICENSESERVER /CONFIGURE_FIREWALL /QUIET /NOREBOOT /NOSQL /ignore_hw_check_failure'
+
+params_ddc: '/COMPONENTS CONTROLLER,DESKTOPSTUDIO /CONFIGURE_FIREWALL /QUIET /NOREBOOT /NOSQL /ignore_hw_check_failure'
+    
+

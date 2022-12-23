@@ -1,0 +1,46 @@
+#define childgroups for homelab
+[homelab:children]
+VMs
+firstdc
+DomainMembers
+ctxcontroller
+sqlexpress
+test
+
+
+
+# VMs to create
+[VMs]
+192.168.1.40 guest_hostname='dc01' guest_vcpu='2' guest_vram='4096'
+192.168.1.41 guest_hostname='ctxcc01' guest_vcpu='4' guest_vram='8192'
+192.168.1.42 guest_hostname='ctxts01' guest_vcpu='2' guest_vram='4096'
+#192.168.1.33 guest_hostname='scriptVM' guest_vcpu='2' guest_vram='4096'
+#10.60.203.202 guest_hostname='lab-cc02' guest_vcpu='2' guest_vram='4096'
+#10.60.203.203 guest_hostname='lab-splunk01' guest_vcpu='4' guest_vram='4096'
+#10.60.203.204 guest_hostname='lab-worker01' guest_vcpu='4' guest_vram='4096'
+#10.60.203.205 guest_hostname='lab-ddc01' guest_vcpu='4' guest_vram='4096'
+#10.60.203.206 guest_hostname='thpr-controlup' guest_vcpu='4' guest_vram='4096'
+
+#First Active Directory DomainController
+[firstdc]
+192.168.1.40
+
+
+[DomainMembers]
+192.168.1.42
+192.168.1.41
+#10.60.203.203
+#10.60.203.204
+#10.60.203.205
+#10.60.205.200
+
+[ctxcontroller]
+192.168.1.41
+
+[ctxstorefront]
+192.168.1.41
+
+[ctxsqlserver]
+192.168.1.42
+
+

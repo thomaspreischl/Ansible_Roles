@@ -1,0 +1,19 @@
+---
+
+
+
+ #Install MS SQL Express Server and Management Studio
+- name: Install MS SQL Express Server and Management Studio
+  hosts: ctxsqlserver
+  gather_facts: yes
+  roles:
+    - win-disable-ieesec
+    - win-disable-ipv6
+    - ms-install-sql-express2017
+    - ms-install-sql-mgmtstudio
+
+
+
+
+    
+

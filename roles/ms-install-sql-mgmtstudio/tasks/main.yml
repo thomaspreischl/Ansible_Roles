@@ -1,0 +1,47 @@
+---
+
+- name: create a directory for installer download
+  win_file: 
+    path: C:\ansible_install
+    state: directory
+   
+- name: create a directory for installer extraction
+  win_file: 
+    path: C:\ansible_install\sqlmgmtstudio
+    state: directory
+
+
+
+- name: check downloaded installer file exists
+  win_stat:
+    path: C:\ansible_install\sqlmgmtstudio\sql_stuio_installer.exe
+  register: sqlmgmt_file
+
+- name: Download Media for SQL Management Studio 18 Installation
+  win_get_url:
+    url: 'https://download.microsoft.com/download/4/6/8/4681f3b2-f327-4d3d-8617-264b20685be0/SSMS-Setup-DEU.exe'
+    dest: 'C:\ansible_install\sqlmgmtstudio\sql_studio_installer.exe'
+  when: not sqlmgmt_file.stat.exists
+  
+
+
+  
+- name: Install SQL Management Studio 18
+  ansible.windows.win_package:
+    path: 'C:\ansible_install\sqlmgmtstudio\sql_studio_installer.exe'
+    product_id: '{AC2FDB24-D722-49F9-8CB4-8AC187A73BA6}'
+    arguments: '/install /quiet /norestart'
+    state: present
+  become: yes
+  become_method: runas
+  become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+  vars:
+    ansible_become_user: "{{ domain_admin }}"
+    ansible_become_pass: "{{ domain_admin_password }}"
+  register: sql_mgmt
+
+
+- name: Reboot when Required Roles need a restart
+  ansible.windows.win_reboot:
+    post_reboot_delay: 120
+  when: sql_mgmt.changed

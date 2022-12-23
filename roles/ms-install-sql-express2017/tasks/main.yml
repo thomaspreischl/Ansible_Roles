@@ -1,0 +1,83 @@
+---
+
+- name: create a directory for installer download
+  win_file: 
+    path: C:\ansible_install
+    state: directory
+   
+- name: create a directory for installer extraction
+  win_file: 
+    path: C:\ansible_install\sqlexpress2017
+    state: directory
+
+- name: create the configuration file
+  win_copy:
+    src: files/ctx_sql_express_2017.ini
+    dest: C:\ansible_install\sqlexpress2017\sql_conf.ini
+
+- name: a pre requisite of sql net-framework-35
+  win_feature:
+    name: NET-Framework-Core
+    state: present
+
+- name: check downloaded file exists
+  ansible.windows.win_stat:
+    path: 'C:\ansible_install\sqlexpress2017\sql_installer.exe'
+  register: installer_file
+
+- name: get the installer
+  win_get_url:
+    url: 'https://download.microsoft.com/download/5/E/9/5E9B18CC-8FD5-467E-B5BF-BADE39C51F73/SQLServer2017-SSEI-Expr.exe'
+    dest: 'C:\ansible_install\sqlexpress2017\sql_installer.exe'
+  when: not installer_file.stat.exists
+ 
+- name: Download Media for SQL Express 2017 Installation
+  win_command: C:\ansible_install\sqlexpress2017\sql_installer.exe /ACTION=Download MEDIAPATH=C:\ansible_install\sqlexpress2017 /MEDIATYPE=Core /QUIET
+  args:
+    chdir: C:\ansible_install\sqlexpress2017
+  become: yes
+  become_method: runas
+  become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+  vars:
+    ansible_become_user: "{{ domain_admin }}"
+    ansible_become_pass: "{{ domain_admin_password }}"
+
+
+- name: Extract Setupfiles
+  win_command: C:\ansible_install\sqlexpress2017\SQLEXPR_x64_ENU.exe /q /x:C:\ansible_install\sqlexpress2017\setup
+  args:
+    chdir: C:\ansible_install\sqlexpress2017
+  become: yes
+  become_method: runas
+  become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+  vars:
+    ansible_become_user: "{{ domain_admin }}"
+    ansible_become_pass: "{{ domain_admin_password }}"
+
+
+- name: Install the SQL Server Express 2017
+  ansible.windows.win_package:
+    path: 'C:\ansible_install\sqlexpress2017\setup\SETUP.exe'
+    product_id: '{28EEF6BA-A23A-42D2-86BA-A6BEE723B969}'
+    arguments: '/configurationfile=C:\ansible_install\sqlexpress2017\sql_conf.ini'
+    state: present
+  become: yes
+  become_method: runas
+  become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+  vars:
+    ansible_become_user: "{{ domain_admin }}"
+    ansible_become_pass: "{{ domain_admin_password }}"
+
+- name: Add or update registry for ip port
+  win_regedit:
+    path: 'HKLM:\Software\Microsoft\Microsoft SQL Server\MSSQL14.SQLCTX\MSSQLServer\SuperSocketNetLib\Tcp\IPAll'
+    name: TcpPort
+    data: 1433
+  register: win_reg
+
+- name: Restart a service
+  win_service:
+    name: 'MSSQL$SQLCTX'
+    force_dependent_services: yes
+    state: restarted
+  when: win_reg.changed

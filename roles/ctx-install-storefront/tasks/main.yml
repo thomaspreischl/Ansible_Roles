@@ -1,0 +1,43 @@
+---
+
+
+
+- name: create folder
+  win_file: 
+    path: "C:\\ansible_install"
+    state: directory
+
+
+- name: Copy Citrix iso to the local disk
+  win_copy:
+    src: "{{ srcisofile }}"
+    dest: "{{ destisofile }}" 
+    force: no
+    
+
+- name: Ensure an ISO is mounted
+  win_disk_image: 
+    image_path: "{{ destisofile }}"
+    state: present
+  register: disk_image_out
+
+- name: Install Storefront Server
+  ansible.windows.win_package:
+    path: '{{ sfexepath }}'
+    product_id: '{{ sfproductid }}'
+    arguments: '-silent'
+    state: present
+  become: yes
+  become_method: runas
+  become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+  vars:
+    ansible_become_user: "{{ domain_admin }}"
+    ansible_become_pass: "{{ domain_admin_password }}"
+  register: storefront
+
+  
+
+- name: Unmount ISO
+  win_disk_image:
+    image_path: "{{ destisofile }}" 
+    state: absent

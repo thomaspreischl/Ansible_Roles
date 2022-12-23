@@ -1,0 +1,29 @@
+#created THPR 2021-04-21
+#playbook disables Internet Explorer Enhanced Security in Windows
+---
+
+
+
+- name: create a directory for installer download
+  win_file: 
+    path: C:\ansible_install
+    state: directory
+
+
+
+- name: copy script to server
+  win_copy:
+    src: files/disable-ieesc.ps1
+    dest: C:\ansible_install\disable-ieesc.ps1
+
+
+- name: Run script to disable IE Enhanced Sec
+  win_shell: C:\ansible_install\disable-ieesc.ps1
+  become: yes
+  become_method: runas
+  become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+  vars:
+    ansible_become_user: "{{ domain_admin }}"
+    ansible_become_pass: "{{ domain_admin_password }}"
+
+

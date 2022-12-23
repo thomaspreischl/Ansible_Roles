@@ -1,0 +1,46 @@
+#local Serverlogin for Windows VMs
+ansible_user: Administrator
+ansible_password: LAB4me2022!
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
+
+# Systemweite Default Variablen
+# Diese können überschrieben werden indem die Variable in einem "Untergeordneten Gruppe" abweichend definiert wird
+
+vcenter_datacenter: "DatacenterGER"
+vcenter_cluster: CL_THPR
+vcenter_hostname: vcenter.lab.local
+vcenter_user: administrator@vsphere.local
+vcenter_pass: 
+validate_certs: false
+
+#esxhost: 192.168.53.130
+datastore: ds_vmlab
+vmtemplate: thpr-Template-Base2019_1608578927
+
+#notes: "vm created throug automatic deployment by THPR"
+
+#Variables Virtual Maschines
+vm_foldername: /LAB
+vm_network: vnetVMs
+
+#Variablen spezifisch für Umgebung
+guest_netmask: '255.255.255.0'
+guest_gateway: '192.168.1.1'
+
+#IP of your Domaincontroller
+guest_dns_server1: '192.168.1.40'
+
+
+domain_name: lab.local
+domain_admin: lab.local\administrator
+domain_admin_password: LAB4me2022!
+ad_recovery_password: LAB4me2022!
+
+#ansible_dom_userUPN: ansible_service@lab.local
+#ansible_dom_user: Administrator
+#ansible_dom_password: LAB4me2022!
+
+
