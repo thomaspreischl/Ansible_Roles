@@ -1,0 +1,37 @@
+---
+- name: Install AD Services
+  win_feature:
+    name: AD-Domain-Services
+    include_management_tools: yes
+    include_sub_features: yes
+    state: present
+  register: result
+
+
+
+- name: Configure AD Services
+  win_domain:
+    dns_domain_name: "{{domain_name}}"
+    safe_mode_password: "{{ ad_recovery_password }}"
+  register: ad
+
+- name: reboot server
+  win_reboot:
+    msg: "Installing AD. Rebooting..."
+    pre_reboot_delay: 15
+    post_reboot_delay: 300
+  when: ad.changed
+
+- name: Wait on connect
+  wait_for_connection:
+    delay: 60
+    timeout: 1800
+
+- name: Gather facts for the first time
+  setup:
+
+- name: Copy PolicyDefinitions Folder
+  win_copy:
+    src: C:\Windows\PolicyDefinitions\
+    dest: C:\Windows\SYSVOL\sysvol\{{ domain_name }}\Policies\PolicyDefinitions\
+    remote_src: yes

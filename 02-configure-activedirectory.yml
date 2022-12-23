@@ -1,0 +1,11 @@
+---
+
+
+#Install Roles für ADDS and Configure Active Directory Services
+- name: Setup first Domaincontroller
+  hosts: firstdc
+
+  gather_facts: yes
+  roles:
+    - win-configure-activedirectory-controller
+    - enable-rds

@@ -1,0 +1,9 @@
+---
+ #Join Servers to AD
+- name: Join
+  hosts: DomainMembers
+  gather_facts: yes
+  roles:
+    - win-disable-ipv6
+    - win-join-activedirectory
+    - enable-rds
