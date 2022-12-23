@@ -14,7 +14,7 @@
 
 
 - name: Install Citrix Storefront
-  hosts: ctxstorefront1
+  hosts: ctxstorefront
   vars_files:
     - ./vars/ctx/2209.yml
   gather_facts: yes

@@ -13,7 +13,7 @@ req_roles: NET-Framework-45-Core,GPMC,RSAT-ADDS-Tools,RDS-Licensing-UI,WAS,Telne
 exepath: '{{ disk_image_out.mount_paths[0] }}x64\XenDesktop Setup\XenDesktopServerSetup.exe'
 
 sfexepath: '{{ disk_image_out.mount_paths[0] }}x64\Storefront\CitrixStoreFront-x64.exe'
-sfproductid: '{25C518E5-4D52-45D3-BDBA-0460DC7436EC}'
+sfproductid: '{AE4B5815-02D8-4AF4-8B3A-581CD511443A}'
 
 components: 'CONTROLLER,DESKTOPSTUDIO,DESKTOPDIRECTOR,LICENSESERVER'
 
