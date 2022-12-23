@@ -12,7 +12,8 @@ The server must be connected to the Active Directory and the file paths in the v
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+A description of the settable variables for this role should go here, including any variables that are in vars/ctx/xxx.yml (xxx = CTX Version Number). arameters to the role.
+The settings, file paths for the installation files, etc. should all be set in the variable file for the particular version. In the playbook, the versions are to be passed along via the varfiles.
 
 | Variable                | Required | Default | Choices                   | Comments                                 |
 |-------------------------|----------|---------|---------------------------|------------------------------------------|
@@ -25,7 +26,8 @@ A description of the settable variables for this role should go here, including 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+The dependencies, such as server roles, are listed in the respective playbook as an example or installed in the role accordingly. The dependent roles are also stored in the respective varfile.
+In my homelab I installed some additional roles, because I like to have them installed on the controllers as well.
 
 Example Playbook
 ----------------

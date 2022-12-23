@@ -1,0 +1,35 @@
+---
+ #Install Citrix Virtual Apps and Desktop Controller
+- name: Install Citrix Virtual Apps and Desktop Controller full without storefront
+  hosts: ctxcontroller
+  vars_files:
+    - ./vars/ctx/2106.yml
+  vars:
+    components: CONTROLLER,DESKTOPSTUDIO,DESKTOPDIRECTOR,LICENSESERVER
+  gather_facts: yes
+  roles:
+    - win-disable-ieesec
+    - win-disable-ipv6
+    - ctx-install-management-components
+
+
+- name: Install Citrix Storefront
+  hosts: ctxstorefront
+  vars_files:
+    - ./vars/ctx/2106.yml
+  gather_facts: yes
+  roles:
+    - win-disable-ieesec
+    - win-disable-ipv6
+    - ctx-install-storefront
+
+
+ #Install MS SQL Express Server and Management Studio
+- name: Install MS SQL Express Server 2017 and Management Studio
+  hosts: sqlexpress
+  gather_facts: yes
+  roles:
+    - win-disable-ieesec
+    - win-disable-ipv6
+    - ms-install-sql-express2017
+    - ms-install-sql-mgmtstudio
