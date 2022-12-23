@@ -19,3 +19,6 @@ for running in debugmode you can add the parameter *-vvv*
 
 ## 01-create_vsphere_vms
 
+You can use this playbook to create multiple VMs in your vSphere / vcenter environment. Add the VMs in the defined section in your inventory file.
+In your group_vars file you have to define your settings for the connections, passwords and so on.
+
