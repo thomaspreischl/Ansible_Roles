@@ -1,0 +1,11 @@
+---
+# Create VMs in vsphere for homelab
+- name: VM from template
+  hosts: VMs
+
+  gather_facts: false
+  connection: local
+  vars:
+    dumpfacts: False
+  roles:
+    - create-vsphere-vms
