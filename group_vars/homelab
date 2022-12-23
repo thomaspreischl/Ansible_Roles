@@ -31,7 +31,7 @@ guest_netmask: '255.255.255.0'
 guest_gateway: '192.168.1.1'
 
 #IP of your Domaincontroller
-guest_dns_server1: '192.168.1.40'
+guest_dns_server1: '192.168.1.200'
 
 
 domain_name: lab.local
