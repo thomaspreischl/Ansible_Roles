@@ -12,6 +12,7 @@ The following Installations are tested.
 
 ### Tested operation system
 - Windows Server 2019
+- Windows Server 2022
 
 ### Tested Roles
 - Controller
@@ -24,6 +25,7 @@ The following Installations are tested.
 
 ### Tested operation system
 - Windows Server 2019
+- Windows Server 2022
 
 ### Tested Roles
 - Controller
@@ -36,6 +38,7 @@ The following Installations are tested.
 
 ### Tested operation system
 - Windows Server 2019
+- Windows Server 2022
 
 ### Tested Roles
 - Controller
@@ -48,6 +51,7 @@ The following Installations are tested.
 
 ### Tested operation system
 - Windows Server 2019
+- Windows Server 2022
 
 ### Tested Roles
 - Controller
@@ -60,6 +64,7 @@ The following Installations are tested.
 
 ### Tested operation system
 - Windows Server 2019
+- Windows Server 2022
 
 ### Tested Roles
 - Controller
