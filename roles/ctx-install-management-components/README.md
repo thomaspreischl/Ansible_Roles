@@ -33,6 +33,17 @@ The following Installations are tested.
 - Studio
 - License Server
 
+## Citrix Virtual Apps and Desktops 2203 CU2
+
+### Tested operation system
+- Windows Server 2019
+- Windows Server 2022
+
+### Tested Roles
+- Controller
+- Director
+- Studio
+- License Server
 
 ## Citrix Virtual Apps and Desktops 2106
 

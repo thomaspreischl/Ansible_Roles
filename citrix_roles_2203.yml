@@ -1,11 +1,11 @@
 ---
-#Install Virtual Apps and Desktops 2212
+#Install Virtual Apps and Desktops 2203 CU2
 
  #Install Citrix Virtual Apps and Desktop Controller
 - name: Install Citrix Virtual Apps and Desktop Controller full without storefront
   hosts: ctxcontroller
   vars_files:
-    - ./vars/ctx/2212.yml
+    - ./vars/ctx/2203.yml
   vars:
     components: CONTROLLER,DESKTOPSTUDIO,DESKTOPDIRECTOR,LICENSESERVER
   gather_facts: yes
@@ -16,9 +16,9 @@
 
 
 - name: Install Citrix Storefront
-  hosts: ctxstorefront
+  hosts: ctxstorefront1
   vars_files:
-    - ./vars/ctx/2212.yml
+    - ./vars/ctx/2203.yml
   gather_facts: yes
   roles:
     - win-disable-ieesec

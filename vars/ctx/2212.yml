@@ -13,7 +13,7 @@ req_roles: NET-Framework-45-Core,GPMC,RSAT-ADDS-Tools,RDS-Licensing-UI,WAS,Telne
 exepath: '{{ disk_image_out.mount_paths[0] }}x64\XenDesktop Setup\XenDesktopServerSetup.exe'
 
 sfexepath: '{{ disk_image_out.mount_paths[0] }}x64\Storefront\CitrixStoreFront-x64.exe'
-sfproductid: '{25C518E5-4D52-45D3-BDBA-0460DC7436EC}'
+sfproductid: '{BD13058D-585C-44C4-B5C7-00E09ACA3BAE}'
 
 #if not used in playbook to seperate the components, use this
 components: 'CONTROLLER,DESKTOPSTUDIO,DESKTOPDIRECTOR,LICENSESERVER'
