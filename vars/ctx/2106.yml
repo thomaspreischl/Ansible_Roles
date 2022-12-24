@@ -2,7 +2,7 @@
 # Define your Active Directory Groups here
 
 
-# edition: 2103
+# edition: 2106
 
 srcisofile: /mnt/d/Downloads_LAB/ctx/Citrix_Virtual_Apps_and_Desktops_7_2106.iso
 destisofile: C:\ansible_install\Citrix_Virtual_Apps_and_Desktops_7_2106.iso

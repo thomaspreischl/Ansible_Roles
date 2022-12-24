@@ -1,16 +1,79 @@
-ctx-install-management-components
-=========
+## ctx-install-management-components
+
 
 This role can be used to install the Citrix backend components. With the exception of Storefront Server. This can be installed via the role ctx-install-storefront.
 
 
-Requirements
-------------
+# Tested Versions and Roles of Citrix Virtual Apps and Desktops
+
+The following Installations are tested.
+
+## Citrix Virtual Apps and Desktops 2212
+
+### Tested operation system
+- Windows Server 2019
+
+### Tested Roles
+- Controller
+- Director
+- Studio
+- License Server
+
+
+## Citrix Virtual Apps and Desktops 2209
+
+### Tested operation system
+- Windows Server 2019
+
+### Tested Roles
+- Controller
+- Director
+- Studio
+- License Server
+
+
+## Citrix Virtual Apps and Desktops 2106
+
+### Tested operation system
+- Windows Server 2019
+
+### Tested Roles
+- Controller
+- Director
+- Studio
+- License Server
+
+
+## Citrix Virtual Apps and Desktops 2103
+
+### Tested operation system
+- Windows Server 2019
+
+### Tested Roles
+- Controller
+- Director
+- Studio
+- License Server
+
+
+## Citrix Virtual Apps and Desktops 1912
+
+### Tested operation system
+- Windows Server 2019
+
+### Tested Roles
+- Controller
+- Director
+- Studio
+- License Server
+
+
+# Requirements
+
 
 The server must be connected to the Active Directory and the file paths in the variable file should be correct.
 
-Role Variables
---------------
+# Role Variables
 
 A description of the settable variables for this role should go here, including any variables that are in vars/ctx/xxx.yml (xxx = CTX Version Number). arameters to the role.
 The settings, file paths for the installation files, etc. should all be set in the variable file for the particular version. In the playbook, the versions are to be passed along via the varfiles.
@@ -23,14 +86,12 @@ The settings, file paths for the installation files, etc. should all be set in t
 | domain_admin_password   | yes      | false   |                           | example variable                         |
 
 
-Dependencies
-------------
+# Dependencies
 
 The dependencies, such as server roles, are listed in the respective playbook as an example or installed in the role accordingly. The dependent roles are also stored in the respective varfile.
 In my homelab I installed some additional roles, because I like to have them installed on the controllers as well.
 
-Example Playbook
-----------------
+# Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
@@ -45,12 +106,11 @@ Including an example of how to use your role (for instance, with variables passe
     - ctx-install-management-components
 
 
-License
--------
+# License
 
 See license.md
 
-Author Information
-------------------
+# Author Information
+
 
 https://www.thomaspreischl.de
