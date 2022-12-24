@@ -12,9 +12,11 @@ req_roles: NET-Framework-45-Core,GPMC,RSAT-ADDS-Tools,RDS-Licensing-UI,WAS,Telne
 
 exepath: '{{ disk_image_out.mount_paths[0] }}x64\XenDesktop Setup\XenDesktopServerSetup.exe'
 
-params_full: '/COMPONENTS {{ components }} /CONFIGURE_FIREWALL /QUIET /NOREBOOT /NOSQL /ignore_hw_check_failure'
-params_licserver: '/COMPONENTS LICENSESERVER /CONFIGURE_FIREWALL /QUIET /NOREBOOT /NOSQL /ignore_hw_check_failure'
+sfexepath: '{{ disk_image_out.mount_paths[0] }}x64\Storefront\CitrixStoreFront-x64.exe'
+sfproductid: 
 
-params_ddc: '/COMPONENTS CONTROLLER,DESKTOPSTUDIO /CONFIGURE_FIREWALL /QUIET /NOREBOOT /NOSQL /ignore_hw_check_failure'
-    
+#if not used in playbook to seperate the components, use this
+components: 'CONTROLLER,DESKTOPSTUDIO,DESKTOPDIRECTOR,LICENSESERVER'
+
+params_full: '/COMPONENTS {{ components }} /CONFIGURE_FIREWALL /QUIET /NOREBOOT /NOSQL /ignore_hw_check_failure'    
 
